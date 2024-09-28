@@ -20,7 +20,12 @@ h1, h2 {
     color: #f1f1f1;
 }
 
-#return-display, #comparison-display {
+.description {
+    color: #ccc;
+    font-style: italic;
+}
+
+#return-display, #comparison-display, #holdings-list {
     margin-top: 20px;
     padding: 10px;
     background-color: #444;
@@ -35,7 +40,13 @@ select {
     border-radius: 4px;
 }
 
-p {
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
     margin: 5px 0;
-    color: #fff;
+    font-size: 16px;
+    line-height: 1.5;
 }
