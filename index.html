@@ -3,44 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Cinerea Capital - Opal Fund Performance</title>
+    <title>Cinerea - Opal Fund</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #F4E6D2;
+            color: #6F9585;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            width: 800px;
+            padding: 20px;
+            border: 2px solid #5F8575;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0;
+        }
+        h2 {
+            font-size: 2em;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        .email {
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            color: #6F9585;
+        }
+        .performance, .holdings, .info {
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+        .performance p, .holdings p, .info p {
+            margin: 10px 0;
+        }
+        .highlight {
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        .holding-card {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid #5F8575;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .holding-card p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        .selector {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .selector button {
+            background-color: #5F8575;
+            color: #F4E6D2;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-size: 1em;
+        }
+        .selector button.active {
+            background-color: #3D5A4C;
+        }
+        .holdings-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .cash-card {
+            background-color: rgba(95, 133, 117, 0.2);
+        }
+        .ticker {
+            color: #3D5A4C;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .allocation, .return-label {
+            color: #6F9585;
+        }
+        .return-value {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
 </head>
 <body>
-    <div id="container">
-        <h1>Cinerea Capital</h1>
+    <div class="container">
+        <h1>CINEREA</h1>
         <h2>Opal Fund</h2>
-        
-        <p class="description">The Cinerea Opal Fund is an actively managed portfolio that aims to make opportunistic trades on technically undervalued securities.</p>
-        
-        <div id="return-display">
-            <h3>Select Timeframe:</h3>
-            <select id="timeframe-selector">
-                <option value="all-time">All-Time (Since July 1, 2024)</option>
-                <option value="1-month">1 Month</option>
-                <option value="1-week">1 Week</option>
-            </select>
+        <p class="email">Inquiries: ak@ayaan.codes</p>
+        <div class="selector view-selector">
+            <button onclick="changeView('performance')" class="active">Performance</button>
+            <button onclick="changeView('holdings')">Holdings</button>
+            <button onclick="changeView('activity')">Activity</button>
+            <button onclick="changeView('info')">Info</button>
         </div>
-
-        <div id="comparison-display" class="card">
-            <!-- This is where the Opal vs S&P 500 return data will be displayed -->
+        <div id="performance-view" class="performance">
+            <div class="selector time-selector">
+                <button onclick="changePerformance('all')" class="active">All Time</button>
+                <button onclick="changePerformance('ytd')">YTD</button>
+                <button onclick="changePerformance('1m')">1M</button>
+                <button onclick="changePerformance('1w')">1W</button>
+            </div>
+            <p><strong><span id="performance-timeframe">All Time</span> Performance vs Index:</strong></p>
+            <p>Cinerea Opal Fund: <span id="fund-performance" class="highlight">11.50%</span></p>
+            <p>Index: <span id="index-performance" class="highlight">5.04%</span></p>
         </div>
-
-        <div id="holdings-list">
-            <h3>Current Holdings:</h3>
+        <div id="holdings-view" class="holdings" style="display: none;">
+            <h3>Current Holdings</h3>
             <div class="holdings-container">
-                <div class="card cash-card">Cash - 30.51%</div>
-                <div class="card">INFA (Informatica)<br>Allocation: 18.52%<br>Return: 3.29%</div>
-                <div class="card">LULU (Lululemon Athletica)<br>Allocation: 9.84%<br>Return: 8.69%</div>
-                <div class="card">ENTG (Entegris)<br>Allocation: 9.47%<br>Return: 5.38%</div>
-                <div class="card">LRCX (Lam Research)<br>Allocation: 9.42%<br>Return: 5.21%</div>
-                <div class="card">QCOM (Qualcomm)<br>Allocation: 9.20%<br>Return: 2.70%</div>
-                <div class="card">EW (Edwards Lifesciences)<br>Allocation: 8.47%<br>Return: -6.69%</div>
-                <div class="card">ARHS (Arhaus)<br>Allocation: 4.57%<br>Return: 15.62%</div>
+                <div class="holding-card cash-card">
+                    <p><span class="ticker">Cash</span></p>
+                    <p><span class="allocation">Allocation: 30.51%</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">INFA (Informatica)</span></p>
+                    <p><span class="allocation">Allocation: 18.52%</span></p>
+                    <p><span class="return-label">Unrealized Return: </span><span class="return-value">3.29%</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">LULU (Lululemon Athletica)</span></p>
+                    <p><span class="allocation">Allocation: 9.84%</span></p>
+                    <p><span class="return-label">Unrealized Return: </span><span class="return-value">8.69%</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">ENTG (Entegris)</span></p>
+                    <p><span class="allocation">Allocation: 9.47%</span></p>
+                    <p><span class="return-label">Unrealized Return: </span><span class="return-value">5.38%</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">LRCX (Lam Research)</span></p>
+                    <p><span class="allocation">Allocation: 9.42%</span></p>
+                    <p><span class="return-label">Unrealized Return: </span><span class="return-value">5.21%</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">QCOM (Qualcomm)</span></p>
+                    <p><span class="allocation">Allocation: 9.20%</span></p>
+                    <p><span class="return-label">Unrealized Return: </span><span class="return-value">2.70%</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">EW (Edwards Lifesciences)</span></p>
+                    <p><span class="allocation">Allocation: 8.47%</span></p>
+                    <p><span class="return-label">Unrealized Return: </span><span class="return-value">-6.69%</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">ARHS (Arhaus)</span></p>
+                    <p><span class="allocation">Allocation: 4.57%</span></p>
+                    <p><span class="return-label">Unrealized Return: </span><span class="return-value">15.62%</span></p>
+                </div>
             </div>
         </div>
+        <div id="activity-view" class="holdings" style="display: none;">
+            <h3>Recent Activity</h3>
+            <div class="holdings-container">
+                <div class="holding-card">
+                    <p><span class="ticker">INFA (Informatica)</span></p>
+                    <p><span class="allocation">Buy Date: 2023-05-15</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">LULU (Lululemon Athletica)</span></p>
+                    <p><span class="allocation">Buy Date: 2023-06-02</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">ENTG (Entegris)</span></p>
+                    <p><span class="allocation">Buy Date: 2023-05-28</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">LRCX (Lam Research)</span></p>
+                    <p><span class="allocation">Buy Date: 2023-06-10</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">QCOM (Qualcomm)</span></p>
+                    <p><span class="allocation">Buy Date: 2023-05-20</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">EW (Edwards Lifesciences)</span></p>
+                    <p><span class="allocation">Buy Date: 2023-06-05</span></p>
+                </div>
+                <div class="holding-card">
+                    <p><span class="ticker">ARHS (Arhaus)</span></p>
+                    <p><span class="allocation">Buy Date: 2023-06-15</span></p>
+                </div>
+            </div>
+        </div>
+        <div id="info-view" class="info" style="display: none;">
+            <h3>Methodology</h3>
+            <p>The Cinerea Opal Fund employs a factor-based quantitative strategy. Our approach is systematic, relying on proprietary indicators developed in-house to identify market inefficiencies and undervalued positions.</p>
+            <p>Our indicators primarily focus on momentum and market sentiment factors. We apply these across various markets and asset classes to make data-driven investment decisions. That's all there is to it.</p>
+        </div>
     </div>
-    
-    <script src="script.js"></script>
+
+    <script>
+        function changePerformance(timeFrame) {
+            const fundPerformance = document.getElementById('fund-performance');
+            const indexPerformance = document.getElementById('index-performance');
+            const performanceTimeframe = document.getElementById('performance-timeframe');
+            
+            const performances = {
+                'all': ['11.50%', '5.04%', 'All Time'],
+                'ytd': ['8.75%', '4.20%', 'Year-to-Date'],
+                '1m': ['2.30%', '1.80%', 'One Month'],
+                '1w': ['0.95%', '0.70%', 'One Week']
+            };
+
+            fundPerformance.textContent = performances[timeFrame][0];
+            indexPerformance.textContent = performances[timeFrame][1];
+            performanceTimeframe.textContent = performances[timeFrame][2];
+
+            document.querySelectorAll('.time-selector button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function changeView(view) {
+            const views = ['performance-view', 'holdings-view', 'activity-view', 'info-view'];
+            views.forEach(v => {
+                document.getElementById(v).style.display = v === view + '-view' ? 'block' : 'none';
+            });
+
+            document.querySelectorAll('.view-selector button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function colorReturns() {
+            const returnValues = document.querySelectorAll('.return-value');
+            returnValues.forEach(value => {
+                const returnValue = parseFloat(value.textContent);
+                if (returnValue > 0) {
+                    value.style.color = '#2E7D32';  // Darker green for positive returns
+                } else if (returnValue < 0) {
+                    value.style.color = '#C62828';  // Darker red for negative returns
+                } else {
+                    value.style.color = '#6F9585';  // Same as body text color for zero returns
+                }
+            });
+        }
+
+        // Call the function when the page loads
+        window.onload = colorReturns;
+    </script>
 </body>
 </html>
