@@ -7,7 +7,7 @@ body {
 }
 
 #container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     background-color: #333;
@@ -18,18 +18,24 @@ body {
 
 h1, h2 {
     color: #f1f1f1;
+    margin: 10px 0;
 }
 
 .description {
     color: #ccc;
     font-style: italic;
+    margin-bottom: 20px;
 }
 
 #return-display, #comparison-display, #holdings-list {
     margin-top: 20px;
-    padding: 10px;
+}
+
+#comparison-display {
+    padding: 15px;
     background-color: #444;
-    border-radius: 5px;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 select {
@@ -38,6 +44,29 @@ select {
     color: #fff;
     border: 1px solid #666;
     border-radius: 4px;
+}
+
+#holdings-list {
+    margin-top: 20px;
+}
+
+.holdings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.card {
+    padding: 15px;
+    background-color: #444;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.cash-card {
+    background-color: #888;
 }
 
 ul {
