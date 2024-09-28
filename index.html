@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Portfolio vs S&P 500 Performance</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="container">
+        <h1>My Investment Fund Performance</h1>
+        <h2>Portfolio vs. S&P 500</h2>
+        
+        <div id="return-display">
+            <label for="timeframe">Select Timeframe:</label>
+            <select id="timeframe">
+                <option value="1w">1 Week</option>
+                <option value="1m">1 Month</option>
+                <option value="ytd">Year to Date</option>
+                <option value="total">Total</option>
+            </select>
+        </div>
+        
+        <canvas id="performanceChart" width="800" height="400"></canvas>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
