@@ -4,24 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Portfolio vs S&P 500 Performance</title>
+    <title>Cinerea Capital - Opal Fund Performance</title>
 </head>
 <body>
     <div id="container">
-        <h1>My Investment Fund Performance</h1>
-        <h2>Portfolio vs. S&P 500</h2>
+        <h1>Cinerea Capital</h1>
+        <h2>Opal Fund</h2>
+        
+        <p class="description">The Cinerea Opal Fund is an actively managed portfolio that aims to make opportunistic trades on technically undervalued securities.</p>
         
         <div id="return-display">
             <h3>Select Timeframe:</h3>
             <select id="timeframe-selector">
-                <option value="Total">Total</option>
-                <option value="1 Month">1 Month</option>
-                <option value="1 Week">1 Week</option>
+                <option value="all-time">All-Time (Since July 1, 2024)</option>
+                <option value="1-month">1 Month</option>
+                <option value="1-week">1 Week</option>
             </select>
         </div>
 
         <div id="comparison-display">
             <!-- This is where the portfolio vs S&P 500 return data will be displayed -->
+        </div>
+
+        <div id="holdings-list">
+            <h3>Current Holdings:</h3>
+            <ul>
+                <li style="color: gray;">Cash - 30.51%</li>
+                <li>INFA (Informatica) - 18.52% Allocation | Return: 3.29%</li>
+                <li>LULU (Lululemon Athletica) - 9.84% Allocation | Return: 8.69%</li>
+                <li>ENTG (Entegris) - 9.47% Allocation | Return: 5.38%</li>
+                <li>LRCX (Lam Research) - 9.42% Allocation | Return: 5.21%</li>
+                <li>QCOM (Qualcomm) - 9.20% Allocation | Return: 2.70%</li>
+                <li>EW (Edwards Lifesciences) - 8.47% Allocation | Return: -6.69%</li>
+                <li>ARHS (Arhaus) - 4.57% Allocation | Return: 15.62%</li>
+            </ul>
         </div>
     </div>
     
