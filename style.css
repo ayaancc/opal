@@ -7,26 +7,27 @@ body {
 }
 
 #container {
-    max-width: 900px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     background-color: #333;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 h1, h2 {
-    text-align: center;
     color: #f1f1f1;
-    margin-bottom: 10px;
 }
 
-#return-display {
-    text-align: center;
-    margin: 20px 0;
+#return-display, #comparison-display {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #444;
+    border-radius: 5px;
 }
 
-#return-display select {
+select {
     padding: 5px;
     background-color: #444;
     color: #fff;
@@ -34,29 +35,7 @@ h1, h2 {
     border-radius: 4px;
 }
 
-canvas {
-    display: block;
-    margin: 0 auto;
-    background-color: #222;
-    padding: 10px;
-    border-radius: 8px;
-}
-#holdings-chart {
-    display: flex;
-    height: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 20px;
-    overflow: hidden;
-}
-
-.holding {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+p {
+    margin: 5px 0;
     color: #fff;
-    font-weight: bold;
-    font-size: 14px;
-    text-align: center;
-    transition: background-color 0.3s;
 }
