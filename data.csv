@@ -1,3 +1,4 @@
-Date,Portfolio,S&P 500,Tickers,Weights,Entry Prices,Current Prices
-2024-08-01,1000,1000,"AAPL MSFT TSLA","0.4 0.3 0.3","150 200 700","160 210 730"
-2024-08-02,1010,995,"AAPL MSFT TSLA","0.4 0.3 0.3","150 200 700","161 215 735"
+Timeframe,Portfolio,S&P 500
+Total,12.5,10.3
+1 Month,3.2,2.7
+1 Week,1.1,1.4
