@@ -44,11 +44,11 @@
             margin-bottom: 20px;
             color: #6F9585;
         }
-        .performance, .holdings, .info {
+        .performance, .holdings {
             margin-top: 20px;
             font-size: 1.2em;
         }
-        .performance p, .holdings p, .info p {
+        .performance p, .holdings p {
             margin: 10px 0;
         }
         .highlight {
@@ -70,17 +70,18 @@
             display: flex;
             justify-content: center;
             margin-bottom: 15px;
-            flex-wrap: wrap;
         }
         .selector button {
             background-color: #5F8575;
             color: #F4E6D2;
             border: none;
             padding: 10px 15px;
-            margin: 5px;
+            margin: 0 5px;
             cursor: pointer;
             font-family: 'Georgia', serif;
             font-size: 1em;
+            flex: 1;
+            white-space: nowrap;
         }
         .selector button.active {
             background-color: #3D5A4C;
@@ -115,7 +116,6 @@
             <button onclick="changeView('performance')" class="active">Performance</button>
             <button onclick="changeView('holdings')">Holdings</button>
             <button onclick="changeView('activity')">Activity</button>
-            <button onclick="changeView('info')">Info</button>
         </div>
         <div id="performance-view" class="performance">
             <div class="selector time-selector">
@@ -205,11 +205,6 @@
                 </div>
             </div>
         </div>
-        <div id="info-view" class="info" style="display: none;">
-            <h3>Methodology</h3>
-            <p>The Cinerea Opal Fund employs a factor-based quantitative strategy. Our approach is systematic, relying on proprietary indicators developed in-house to identify market inefficiencies and undervalued positions.</p>
-            <p>Our indicators primarily focus on momentum and market sentiment factors. We apply these across various markets and asset classes to make data-driven investment decisions. That's all there is to it.</p>
-        </div>
     </div>
 
     <script>
@@ -234,7 +229,7 @@
         }
 
         function changeView(view) {
-            const views = ['performance-view', 'holdings-view', 'activity-view', 'info-view'];
+            const views = ['performance-view', 'holdings-view', 'activity-view'];
             views.forEach(v => {
                 document.getElementById(v).style.display = v === view + '-view' ? 'block' : 'none';
             });
