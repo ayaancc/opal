@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let latestTickers = [], latestWeights = [], entryPrices = [], currentPrices = [];
 
             dataLines.forEach(line => {
+                if (line.trim() === "") return; // Skip empty lines
                 const [date, portfolio, sp500, tickers, weights, entries, currents] = line.split(',');
 
                 // Parsing data for each line
@@ -26,6 +27,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             createChart(dates, portfolioValues, sp500Values);
             createHoldingsChart(latestTickers, latestWeights, entryPrices, currentPrices);
+            displayOverallReturn(currentPrices, entryPrices, latestWeights);
+            displayHoldingsList(latestTickers, currentPrices, entryPrices);
         });
 });
 
@@ -101,4 +104,42 @@ function createHoldingsChart(tickers, weights, entryPrices, currentPrices) {
         
         chartContainer.appendChild(div);
     });
+}
+
+function displayOverallReturn(currentPrices, entryPrices, weights) {
+    let totalReturn = 0;
+    let totalWeight = 0;
+
+    currentPrices.forEach((currentPrice, index) => {
+        const entryPrice = entryPrices[index];
+        const weight = weights[index];
+        totalReturn += ((currentPrice - entryPrice) / entryPrice) * weight;
+        totalWeight += weight;
+    });
+
+    const overallReturn = totalReturn / totalWeight * 100;
+
+    const returnDisplay = document.createElement('div');
+    returnDisplay.id = 'return-display';
+    returnDisplay.innerHTML = `<h3>Total Return: ${overallReturn.toFixed(2)}%</h3>`;
+    document.getElementById('container').insertBefore(returnDisplay, document.getElementById('performanceChart'));
+}
+
+function displayHoldingsList(tickers, currentPrices, entryPrices) {
+    const holdingsListContainer = document.createElement('div');
+    holdingsListContainer.id = 'holdings-list';
+    holdingsListContainer.style.marginTop = '20px';
+    
+    let holdingsListHTML = '<h3>Holdings:</h3><ul>';
+    tickers.forEach((ticker, index) => {
+        const entryPrice = entryPrices[index];
+        const currentPrice = currentPrices[index];
+        const returnSinceBuy = ((currentPrice - entryPrice) / entryPrice) * 100;
+
+        holdingsListHTML += `<li>${ticker}: Entry Price = $${entryPrice}, Current Price = $${currentPrice}, Return = ${returnSinceBuy.toFixed(2)}%</li>`;
+    });
+    holdingsListHTML += '</ul>';
+
+    holdingsListContainer.innerHTML = holdingsListHTML;
+    document.getElementById('container').appendChild(holdingsListContainer);
 }
