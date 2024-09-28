@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Portfolio vs S&P 500 Performance</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div id="container">
@@ -13,16 +12,17 @@
         <h2>Portfolio vs. S&P 500</h2>
         
         <div id="return-display">
-            <label for="timeframe">Select Timeframe:</label>
-            <select id="timeframe">
-                <option value="1w">1 Week</option>
-                <option value="1m">1 Month</option>
-                <option value="ytd">Year to Date</option>
-                <option value="total">Total</option>
+            <h3>Select Timeframe:</h3>
+            <select id="timeframe-selector">
+                <option value="Total">Total</option>
+                <option value="1 Month">1 Month</option>
+                <option value="1 Week">1 Week</option>
             </select>
         </div>
-        
-        <canvas id="performanceChart" width="800" height="400"></canvas>
+
+        <div id="comparison-display">
+            <!-- This is where the portfolio vs S&P 500 return data will be displayed -->
+        </div>
     </div>
     
     <script src="script.js"></script>
