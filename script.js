@@ -32,7 +32,7 @@ function updateDisplay(timeframe, dataMap) {
     const sp500Return = dataMap[timeframe].sp500.toFixed(2);
 
     let displayText = `<h3>Timeframe: ${timeframe === 'all-time' ? 'All-Time (Since July 1, 2024)' : timeframe.replace('-', ' ')}</h3>`;
-    displayText += `<p>Your Portfolio Return: ${portfolioReturn}%</p>`;
+    displayText += `<p>Opal Return: ${portfolioReturn}%</p>`;
     displayText += `<p>S&P 500 Return: ${sp500Return}%</p>`;
 
     const returnDisplay = document.getElementById('comparison-display');
